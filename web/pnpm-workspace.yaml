@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - '@tokenflux/tokenrouter-plugin-sdk@0.1.0'
