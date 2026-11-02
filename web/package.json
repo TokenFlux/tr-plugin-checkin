@@ -1,17 +1,18 @@
 {
   "name": "tokenrouter-checkin-web",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@12.9.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
-    "@tokenflux/tokenrouter-plugin-sdk": "0.1.0",
+    "@tokenflux/tokenrouter-plugin-sdk": "0.2.0",
     "vue": "3.5.42"
   },
   "devDependencies": {

@@ -32,4 +32,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
-        run: gh release create "$RELEASE_TAG" release/* --verify-tag --title "$RELEASE_TAG" --notes-file CHANGELOG.md
+        run: gh release create "$RELEASE_TAG" "release/${RELEASE_TAG#v}"/* --verify-tag --title "$RELEASE_TAG" --notes-file CHANGELOG.md

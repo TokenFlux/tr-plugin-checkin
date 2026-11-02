@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "tokenflux.checkin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "apiVersion": 1,
-  "minHostVersion": "0.6.0",
+  "minHostVersion": "0.6.1",
   "name": {
     "en": "Daily Check-in",
     "zh": "每日签到"
@@ -19,9 +19,7 @@
   "homepage": "https://github.com/TokenFlux/tr-plugin-checkin",
   "license": "MIT",
   "icon": "icon.svg",
-  "permissions": [
-    "wallet.credit"
-  ],
+  "permissions": ["wallet.credit"],
   "backend": {
     "executable": "bin/plugin",
     "routes": [
@@ -40,14 +38,22 @@
         "method": "GET",
         "path": "/admin/history",
         "auth": "admin"
+      },
+      {
+        "method": "GET",
+        "path": "/history",
+        "auth": "user"
+      },
+      {
+        "method": "GET",
+        "path": "/admin/settings",
+        "auth": "admin"
       }
     ]
   },
   "frontend": {
     "entry": "frontend/index.js",
-    "styles": [
-      "frontend/index.css"
-    ],
+    "styles": ["frontend/index.css"],
     "pages": [
       {
         "id": "home",
@@ -92,25 +98,46 @@
   "config": {
     "fields": [
       {
+        "key": "paused",
+        "type": "boolean",
+        "label": {
+          "en": "Pause new check-ins",
+          "zh": "暂停新的签到"
+        },
+        "default": false,
+        "description": {
+          "en": "Stops new daily check-ins. Today's pending reward can still finish, and history stays available.",
+          "zh": "暂停后不能开始新的签到，今日已产生的待确认奖励仍可重试，历史记录仍可查看。"
+        }
+      },
+      {
         "key": "reward",
         "type": "number",
         "label": {
-          "en": "Reward",
-          "zh": "奖励金额"
+          "en": "Daily balance reward",
+          "zh": "每日奖励（余额单位）"
         },
         "required": true,
         "default": 0.1,
         "min": 0,
-        "max": 100
+        "max": 100,
+        "description": {
+          "en": "Balance awarded once per user per day, with up to 8 decimal places. Use 0 to record a check-in without adding balance. Changes apply to new claims; existing claims keep their original amount.",
+          "zh": "每位用户每天签到获得的余额，最多保留 8 位小数。设为 0 时只记录签到。修改后用于新的签到，已有记录保留原金额。"
+        }
       },
       {
         "key": "notice",
         "type": "textarea",
         "label": {
-          "en": "Notice",
-          "zh": "公告"
+          "en": "Check-in instructions",
+          "zh": "签到说明"
         },
-        "maxLength": 500
+        "maxLength": 500,
+        "description": {
+          "en": "Instructions shown on the user check-in page, up to 500 characters. Leave empty to hide this section.",
+          "zh": "显示在用户签到页的补充说明，最多 500 个字符。留空则不显示。"
+        }
       }
     ]
   }

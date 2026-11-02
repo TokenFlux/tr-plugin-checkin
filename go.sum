@@ -1,5 +1,5 @@
-github.com/TokenFlux/TokenRouter/plugin-sdk/go v0.1.0 h1:RiAIJuXuTTXdnFtyDyewCxrtGuQmslOlfNPGIDzuh6Y=
-github.com/TokenFlux/TokenRouter/plugin-sdk/go v0.1.0/go.mod h1:7U/8a3e2H3OcyNzQizu8I3sV2qeFQc8s5m2q7HnNR30=
+github.com/TokenFlux/TokenRouter/plugin-sdk/go v0.2.0 h1:DAidJIrW3xQz1DfeYzKbfKIozuSTFNQWEAsrAn5Wk1U=
+github.com/TokenFlux/TokenRouter/plugin-sdk/go v0.2.0/go.mod h1:7U/8a3e2H3OcyNzQizu8I3sV2qeFQc8s5m2q7HnNR30=
 github.com/bufbuild/protocompile v0.14.2-0.20251112213711-9afd4296dfe2 h1:PpGm1S0XcJuNCrbwlktT1pM4hTgu6n0Gdsw5diq6p6k=
 github.com/bufbuild/protocompile v0.14.2-0.20251112213711-9afd4296dfe2/go.mod h1:HKN246DRQwavs64sr2xYmSL+RFOFxmLti+WGCZ2jh9U=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=

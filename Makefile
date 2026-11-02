@@ -1,9 +1,11 @@
 # Makefile builds the native and browser contributions as one validated release.
 # Dependencies and lockfiles are initialized once before frozen release builds;
 # development packages use the same declaration and assets as published archives.
-SDK_VERSION ?= v0.1.0
+SDK_VERSION ?= v0.2.0
 TRPLUGIN ?= go run github.com/TokenFlux/TokenRouter/plugin-sdk/go/cmd/trplugin@$(SDK_VERSION)
 PLATFORMS := linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64
+# Versioned output keeps earlier local builds outside the current manifest and checksum set.
+RELEASE_DIR := release/$(shell node -p "require('./plugin.json').version")
 
 .PHONY: bootstrap frontend build dev pack test
 # Bootstrap runs after the SDK versions are published; commit its two lockfiles.
@@ -39,9 +41,10 @@ dev: frontend
 	cp assets/menu.svg dev/frontend/menu.svg
 
 pack: build
-	$(TRPLUGIN) pack --manifest plugin.json --frontend dist/frontend --bin-dir dist --out release
-	$(TRPLUGIN) validate release/*.tar.gz
+	$(TRPLUGIN) pack --manifest plugin.json --frontend dist/frontend --bin-dir dist --out "$(RELEASE_DIR)"
+	$(TRPLUGIN) validate "$(RELEASE_DIR)"/*.tar.gz
 
 test:
 	go test -race ./...
 	pnpm --dir web typecheck
+	pnpm --dir web test
